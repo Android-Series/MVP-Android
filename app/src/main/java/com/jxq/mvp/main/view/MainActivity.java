@@ -1,29 +1,24 @@
 package com.jxq.mvp.main.view;
 
 import android.content.DialogInterface;
-
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
-
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
-
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
-
 import com.jxq.mvp.MyTaxiApplication;
 import com.jxq.mvp.R;
 import com.jxq.mvp.account.model.AccountManagerImpl;
 import com.jxq.mvp.account.model.IAccountManager;
 import com.jxq.mvp.account.view.PhoneInputDialog;
-
 import com.jxq.mvp.common.databus.RxBus;
 import com.jxq.mvp.common.http.IHttpClient;
 import com.jxq.mvp.common.http.api.API;
@@ -41,14 +36,11 @@ import com.jxq.mvp.main.model.MainMangerImpl;
 import com.jxq.mvp.main.model.bean.Order;
 import com.jxq.mvp.main.presenter.IMainPresenter;
 import com.jxq.mvp.main.presenter.MainPresenterImpl;
-
 import java.util.ArrayList;
 import java.util.List;
-
 import cn.bmob.push.BmobPush;
 import cn.bmob.v3.Bmob;
 import cn.bmob.v3.BmobInstallation;
-
 
 /**
  * －－－ 登录逻辑－－－
@@ -64,8 +56,9 @@ import cn.bmob.v3.BmobInstallation;
  * ------获取附近司机---
  */
 public class MainActivity extends AppCompatActivity implements IMainView {
-
+    //add by jxq
     private final static String TAG = "MainActivity";
+
     private static final String LOCATION_END = "10000end";
     private IMainPresenter mPresenter; //多了一个成员变量presenter:固定写法，构造函数里去创建presenter
     private ILbsLayer mLbsLayer; //使用这个作为我们地图所有的服务
@@ -144,7 +137,6 @@ public class MainActivity extends AppCompatActivity implements IMainView {
                 getProcessingOrder();
             }
         });
-
 
         // 添加地图到容器
         ViewGroup mapViewContainer = (ViewGroup) findViewById(R.id.map_container);
