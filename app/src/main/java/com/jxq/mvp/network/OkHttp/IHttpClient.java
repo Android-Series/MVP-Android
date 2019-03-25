@@ -1,4 +1,7 @@
-package com.jxq.mvp.common.http;
+package com.jxq.mvp.network.OkHttp;
+
+import com.jxq.mvp.network.OkHttp.IRequest;
+import com.jxq.mvp.network.OkHttp.IResponse;
 
 /**
  * HttpClient 抽象接口

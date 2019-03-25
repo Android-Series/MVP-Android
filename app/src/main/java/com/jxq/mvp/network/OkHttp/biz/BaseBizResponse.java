@@ -1,12 +1,10 @@
-package com.jxq.mvp.common.http.biz;
+package com.jxq.mvp.network.OkHttp.biz;
 
 /**
  * Created by liuguangli on 17/5/6.
  * 返回业务数据的公共格式
  */
-
 public class BaseBizResponse {
-
     public static final int STATE_OK = 200;
     // 密码错误
     public static final int STATE_PW_ERR = 100005;

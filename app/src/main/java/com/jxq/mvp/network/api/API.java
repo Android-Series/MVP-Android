@@ -1,4 +1,4 @@
-package com.jxq.mvp.common.http.api;
+package com.jxq.mvp.network.api;
 
 /**
  * Created by liuguangli on 17/4/29.

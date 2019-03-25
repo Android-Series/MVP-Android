@@ -5,7 +5,6 @@ import android.os.Message;
 import com.jxq.mvp.account.model.IAccountManager;
 import com.jxq.mvp.account.model.response.LoginResponse;
 import com.jxq.mvp.common.databus.RegisterBus;
-import com.jxq.mvp.common.http.biz.BaseBizResponse;
 import com.jxq.mvp.common.lbs.LocationInfo;
 import com.jxq.mvp.common.util.LogUtil;
 import com.jxq.mvp.main.model.IMainManager;
@@ -13,6 +12,7 @@ import com.jxq.mvp.main.model.bean.Order;
 import com.jxq.mvp.main.model.response.NearDriversResponse;
 import com.jxq.mvp.main.model.response.OrderStateOptResponse;
 import com.jxq.mvp.main.view.IMainView;
+import com.jxq.mvp.network.OkHttp.biz.BaseBizResponse;
 
 import java.lang.ref.WeakReference;
 

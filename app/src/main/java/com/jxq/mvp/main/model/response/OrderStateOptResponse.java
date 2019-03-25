@@ -1,7 +1,8 @@
 package com.jxq.mvp.main.model.response;
 
-import com.jxq.mvp.common.http.biz.BaseBizResponse;
+
 import com.jxq.mvp.main.model.bean.Order;
+import com.jxq.mvp.network.OkHttp.biz.BaseBizResponse;
 
 /**
  * Created by liuguangli on 17/6/3.

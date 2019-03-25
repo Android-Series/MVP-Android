@@ -1,7 +1,7 @@
-package com.jxq.mvp.common.http.impl;
+package com.jxq.mvp.network.OkHttp.impl;
 
-import com.jxq.mvp.common.http.IRequest;
-import com.jxq.mvp.common.http.api.API;
+import com.jxq.mvp.network.OkHttp.IRequest;
+import com.jxq.mvp.network.api.API;
 import com.google.gson.Gson;
 
 import java.util.HashMap;

@@ -1,10 +1,8 @@
-package com.jxq.mvp.common.http.impl;
+package com.jxq.mvp.network.OkHttp.impl;
 
-import android.util.Log;
-
-import com.jxq.mvp.common.http.IHttpClient;
-import com.jxq.mvp.common.http.IRequest;
-import com.jxq.mvp.common.http.IResponse;
+import com.jxq.mvp.network.OkHttp.IHttpClient;
+import com.jxq.mvp.network.OkHttp.IRequest;
+import com.jxq.mvp.network.OkHttp.IResponse;
 
 import java.io.IOException;
 import java.util.Map;

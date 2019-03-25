@@ -1,0 +1,15 @@
+http://httpbin.org/get?id=id
+GET
+0
+HTTP/1.1 200 OK
+10
+Access-Control-Allow-Credentials: true
+Access-Control-Allow-Origin: *
+Content-Encoding: gzip
+Content-Type: application/json
+Date: Wed, 20 Mar 2019 12:29:18 GMT
+Server: nginx
+Content-Length: 212
+Connection: keep-alive
+OkHttp-Sent-Millis: 1553084958004
+OkHttp-Received-Millis: 1553084958499

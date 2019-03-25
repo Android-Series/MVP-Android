@@ -1,10 +1,10 @@
 package com.jxq.mvp.OkHttpClientImplTest;
-import com.jxq.mvp.common.http.IHttpClient;
-import com.jxq.mvp.common.http.IRequest;
-import com.jxq.mvp.common.http.IResponse;
-import com.jxq.mvp.common.http.api.API;
-import com.jxq.mvp.common.http.impl.BaseRequest;
-import com.jxq.mvp.common.http.impl.OkHttpClientImpl;
+import com.jxq.mvp.network.OkHttp.IHttpClient;
+import com.jxq.mvp.network.OkHttp.IRequest;
+import com.jxq.mvp.network.OkHttp.IResponse;
+import com.jxq.mvp.network.api.API;
+import com.jxq.mvp.network.OkHttp.impl.BaseRequest;
+import com.jxq.mvp.network.OkHttp.impl.OkHttpClientImpl;
 
 import org.junit.Before;
 import org.junit.Test;

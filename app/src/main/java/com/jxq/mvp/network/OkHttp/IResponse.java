@@ -1,4 +1,4 @@
-package com.jxq.mvp.common.http;
+package com.jxq.mvp.network.OkHttp;
 
 import java.util.Map;
 

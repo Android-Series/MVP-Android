@@ -5,12 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 
 import com.jxq.mvp.common.databus.RxBus;
-import com.jxq.mvp.common.http.biz.BaseBizResponse;
 import com.jxq.mvp.common.lbs.LocationInfo;
 import com.jxq.mvp.common.util.LogUtil;
 import com.jxq.mvp.main.model.bean.Order;
 import com.jxq.mvp.main.model.response.OrderStateOptResponse;
 import com.google.gson.Gson;
+import com.jxq.mvp.network.OkHttp.biz.BaseBizResponse;
 
 
 import org.json.JSONException;

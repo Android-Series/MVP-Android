@@ -1,6 +1,6 @@
-package com.jxq.mvp.common.http.impl;
+package com.jxq.mvp.network.OkHttp.impl;
 
-import com.jxq.mvp.common.http.IResponse;
+import com.jxq.mvp.network.OkHttp.IResponse;
 
 /**
  * Created by liuguangli on 17/4/24.

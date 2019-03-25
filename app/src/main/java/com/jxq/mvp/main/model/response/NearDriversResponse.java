@@ -1,7 +1,8 @@
 package com.jxq.mvp.main.model.response;
 
-import com.jxq.mvp.common.http.biz.BaseBizResponse;
+
 import com.jxq.mvp.common.lbs.LocationInfo;
+import com.jxq.mvp.network.OkHttp.biz.BaseBizResponse;
 
 import java.util.List;
 
