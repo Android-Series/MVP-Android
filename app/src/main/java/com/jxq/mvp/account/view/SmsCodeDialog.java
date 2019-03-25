@@ -5,16 +5,13 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 import android.os.CountDownTimer;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
 import com.dalimao.corelibrary.VerificationCodeInput;
-import com.jxq.mvp.MyTaxiApplication;
+import com.jxq.mvp.TaxiApplication;
 import com.jxq.mvp.R;
 import com.jxq.mvp.account.model.AccountManagerImpl;
 import com.jxq.mvp.account.model.IAccountManager;
@@ -22,19 +19,10 @@ import com.jxq.mvp.account.presenter.ISmsCodeDialogPresenter;
 import com.jxq.mvp.account.presenter.SmsCodeDialogPresenterImpl;
 import com.jxq.mvp.common.databus.RxBus;
 import com.jxq.mvp.common.http.IHttpClient;
-import com.jxq.mvp.common.http.IRequest;
-import com.jxq.mvp.common.http.IResponse;
-import com.jxq.mvp.common.http.api.API;
-import com.jxq.mvp.common.http.biz.BaseBizResponse;
-import com.jxq.mvp.common.http.impl.BaseRequest;
-import com.jxq.mvp.common.http.impl.BaseResponse;
 import com.jxq.mvp.common.http.impl.OkHttpClientImpl;
 import com.jxq.mvp.common.storage.SharedPreferencesDao;
 import com.jxq.mvp.common.util.ToastUtil;
 import com.jxq.mvp.main.view.MainActivity;
-import com.google.gson.Gson;
-
-import java.lang.ref.SoftReference;
 
 
 /**
@@ -81,11 +69,9 @@ public class SmsCodeDialog extends Dialog  implements  ISmsCodeDialogView{
         this(context, R.style.Dialog);
         // 上一个界面传来的手机号
         this.mPhone = phone;
-        IHttpClient httpClient = new OkHttpClientImpl();
-        SharedPreferencesDao dao =
-                new SharedPreferencesDao(MyTaxiApplication.getInstance(),
-                SharedPreferencesDao.FILE_ACCOUNT);
-        IAccountManager iAccountManager = new AccountManagerImpl(httpClient, dao);
+        IHttpClient httpClient = new OkHttpClientImpl(); //创建OkHttpClient实例
+        SharedPreferencesDao dao = new SharedPreferencesDao(TaxiApplication.getInstance(), SharedPreferencesDao.FILE_ACCOUNT);
+        IAccountManager iAccountManager = new AccountManagerImpl(httpClient, dao); //创建model层实例
         mPresenter = new SmsCodeDialogPresenterImpl(this, iAccountManager);
        this.mainActivity = context;
     }

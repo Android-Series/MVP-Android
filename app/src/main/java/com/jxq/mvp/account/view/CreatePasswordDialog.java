@@ -8,7 +8,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
-import com.jxq.mvp.MyTaxiApplication;
+import com.jxq.mvp.TaxiApplication;
 import com.jxq.mvp.R;
 import com.jxq.mvp.account.model.AccountManagerImpl;
 import com.jxq.mvp.account.model.IAccountManager;
@@ -44,7 +44,7 @@ public class CreatePasswordDialog extends Dialog implements ICreatePasswordDialo
         mPhoneStr = phone;
         IHttpClient httpClient = new OkHttpClientImpl();
         SharedPreferencesDao dao =
-                new SharedPreferencesDao(MyTaxiApplication.getInstance(),
+                new SharedPreferencesDao(TaxiApplication.getInstance(),
                         SharedPreferencesDao.FILE_ACCOUNT);
         IAccountManager accountManager =  new AccountManagerImpl(httpClient, dao);
         mPresenter = new CreatePasswordDialogPresenterImpl(this, accountManager);

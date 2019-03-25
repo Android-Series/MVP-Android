@@ -3,10 +3,14 @@ package com.jxq.mvp.common.http;
 import java.util.Map;
 
 /**
- * Created by liuguangli on 17/4/24.
- * 定义请求数据的封装方式
+ * 1、定义请求的数据和行为是怎样去封装的
+ * 2、定义请求数据的封装方式
+ * 3、抽象层
  */
 public interface IRequest {
+    /**
+     * 首先指定请求的方式
+     */
     public static final String POST = "POST";
     public static final String GET = "GET";
 
@@ -23,7 +27,7 @@ public interface IRequest {
     void setHeader(String key, String value);
 
     /**
-     *  指定请求参数
+     *  指定请求参数：采用键-值对去对应的
      * @param key
      * @param value
      */
@@ -40,11 +44,11 @@ public interface IRequest {
      * @return
      */
     Map<String, String> getHeader();
+
     /**
      * 提供给执行库请求参数
      * @return
      */
     Object getBody();
-
 
 }

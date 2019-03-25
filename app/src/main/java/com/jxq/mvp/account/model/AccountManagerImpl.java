@@ -3,7 +3,7 @@ package com.jxq.mvp.account.model;
 import android.os.Handler;
 import android.util.Log;
 
-import com.jxq.mvp.MyTaxiApplication;
+import com.jxq.mvp.TaxiApplication;
 import com.jxq.mvp.account.model.response.Account;
 import com.jxq.mvp.account.model.response.LoginResponse;
 import com.jxq.mvp.account.model.response.RegisterResponse;
@@ -210,7 +210,7 @@ public class AccountManagerImpl implements IAccountManager {
                 IRequest request = new BaseRequest(url);
                 request.setBody("phone", phone);
                 request.setBody("password", password);
-                request.setBody("uid", DevUtil.UUID(MyTaxiApplication.getInstance()));
+                request.setBody("uid", DevUtil.UUID(TaxiApplication.getInstance()));
 
                 IResponse response = httpClient.post(request, false);
                 Log.d(TAG, response.getData());

@@ -23,13 +23,14 @@ public class LoginDialogPresenterImpl implements ILoginDialogPresenter {
     /**
      * 接收子线程消息的 Handler
      */
-    /*static class MyHandler extends Handler {
+    static class MyHandler extends Handler {
         // 弱引用
         WeakReference<LoginDialogPresenterImpl> dialogRef;
-        public MyHandler(LoginDialogPresenterImpl presenter)
-        {
+
+        public MyHandler(LoginDialogPresenterImpl presenter) {
             dialogRef = new WeakReference<LoginDialogPresenterImpl>(presenter);
         }
+
         @Override
         public void handleMessage(Message msg) {
             LoginDialogPresenterImpl presenter = dialogRef.get();
@@ -52,14 +53,13 @@ public class LoginDialogPresenterImpl implements ILoginDialogPresenter {
                     break;
             }
         }
-    }*/
+    }
 
 
-    public LoginDialogPresenterImpl(ILoginView view,
-                                    IAccountManager accountManager) {
+    public LoginDialogPresenterImpl(ILoginView view, IAccountManager accountManager) {
         this.view = view;
         this.accountManager = accountManager;
-        //accountManager.setHandler(new MyHandler(this));
+        accountManager.setHandler(new MyHandler(this));
     }
 
     /**

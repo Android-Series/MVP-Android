@@ -14,7 +14,7 @@ import android.widget.AdapterView;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
-import com.jxq.mvp.MyTaxiApplication;
+import com.jxq.mvp.TaxiApplication;
 import com.jxq.mvp.R;
 import com.jxq.mvp.account.model.AccountManagerImpl;
 import com.jxq.mvp.account.model.IAccountManager;
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity implements IMainView {
 
         IHttpClient httpClient = new OkHttpClientImpl();
 
-        SharedPreferencesDao dao = new SharedPreferencesDao(MyTaxiApplication.getInstance(), SharedPreferencesDao.FILE_ACCOUNT);
+        SharedPreferencesDao dao = new SharedPreferencesDao(TaxiApplication.getInstance(), SharedPreferencesDao.FILE_ACCOUNT);
 
         IAccountManager manager = new AccountManagerImpl(httpClient, dao); //拿到model层实例
         IMainManager mainManager = new MainMangerImpl(httpClient); //拿到model层的实例

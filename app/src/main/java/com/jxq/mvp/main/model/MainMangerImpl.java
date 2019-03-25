@@ -1,6 +1,6 @@
 package com.jxq.mvp.main.model;
 
-import com.jxq.mvp.MyTaxiApplication;
+import com.jxq.mvp.TaxiApplication;
 import com.jxq.mvp.account.model.response.Account;
 import com.jxq.mvp.common.databus.RxBus;
 import com.jxq.mvp.common.http.IHttpClient;
@@ -12,7 +12,6 @@ import com.jxq.mvp.common.http.impl.BaseRequest;
 import com.jxq.mvp.common.lbs.LocationInfo;
 import com.jxq.mvp.common.storage.SharedPreferencesDao;
 import com.jxq.mvp.common.util.LogUtil;
-import com.jxq.mvp.main.model.bean.Order;
 import com.jxq.mvp.main.model.response.NearDriversResponse;
 import com.jxq.mvp.main.model.response.OrderStateOptResponse;
 import com.google.gson.Gson;
@@ -104,7 +103,7 @@ public class MainMangerImpl implements IMainManager{
                 /**
                  *  获取 uid,phone
                   */
-                SharedPreferencesDao sharedPreferencesDao = new SharedPreferencesDao(MyTaxiApplication.getInstance(),
+                SharedPreferencesDao sharedPreferencesDao = new SharedPreferencesDao(TaxiApplication.getInstance(),
                                 SharedPreferencesDao.FILE_ACCOUNT);
                 Account account = (Account) sharedPreferencesDao.get(SharedPreferencesDao.KEY_ACCOUNT, Account.class);
                 String uid = account.getUid();
@@ -195,7 +194,7 @@ public class MainMangerImpl implements IMainManager{
                 /**
                  * 获取 uid
                  */
-                SharedPreferencesDao sharedPreferencesDao = new SharedPreferencesDao(MyTaxiApplication.getInstance(),
+                SharedPreferencesDao sharedPreferencesDao = new SharedPreferencesDao(TaxiApplication.getInstance(),
                                 SharedPreferencesDao.FILE_ACCOUNT);
                 Account account = (Account) sharedPreferencesDao.get(SharedPreferencesDao.KEY_ACCOUNT, Account.class);
                 String uid = account.getUid();

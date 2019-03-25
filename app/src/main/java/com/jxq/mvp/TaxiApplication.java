@@ -3,19 +3,19 @@ package com.jxq.mvp;
 import android.app.Application;
 
 /**
- * Created by liuguangli on 17/5/6.
+ * Created by jxq
  */
 
-public class MyTaxiApplication extends Application {
+public class TaxiApplication extends Application {
 
-    private static MyTaxiApplication instance;
+    private static TaxiApplication instance;
 
     @Override
     public void onCreate() {
         super.onCreate();
         instance  = this;
     }
-    public static MyTaxiApplication getInstance() {
+    public static TaxiApplication getInstance() {
         return  instance;
     }
 }

@@ -8,13 +8,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * Created by liuguangli on 17/4/24.
+ * 实现层
  * 封装参数的实现
  */
 
 public class BaseRequest implements IRequest{
-    private String method = POST;
-    private String url;
+    private String method = POST; //默认post请求
+    private String url; //请求行URL
     private Map<String, String> header;
     private Map<String, Object> body;
 

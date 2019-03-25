@@ -3,39 +3,24 @@ package com.jxq.mvp.account.view;
 import android.app.Dialog;
 import android.content.Context;
 import android.os.Bundle;
-import android.os.Handler;
-import android.os.Message;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.jxq.mvp.MyTaxiApplication;
+import com.jxq.mvp.TaxiApplication;
 import com.jxq.mvp.R;
 import com.jxq.mvp.account.model.AccountManagerImpl;
 import com.jxq.mvp.account.model.IAccountManager;
-import com.jxq.mvp.account.model.response.Account;
-import com.jxq.mvp.account.model.response.LoginResponse;
-import com.jxq.mvp.account.presenter.ICreatePasswordDialogPresenter;
 import com.jxq.mvp.account.presenter.ILoginDialogPresenter;
 import com.jxq.mvp.account.presenter.LoginDialogPresenterImpl;
 import com.jxq.mvp.common.databus.RxBus;
 import com.jxq.mvp.common.http.IHttpClient;
-import com.jxq.mvp.common.http.IRequest;
-import com.jxq.mvp.common.http.IResponse;
-import com.jxq.mvp.common.http.api.API;
-import com.jxq.mvp.common.http.biz.BaseBizResponse;
-import com.jxq.mvp.common.http.impl.BaseRequest;
-import com.jxq.mvp.common.http.impl.BaseResponse;
 import com.jxq.mvp.common.http.impl.OkHttpClientImpl;
 import com.jxq.mvp.common.storage.SharedPreferencesDao;
 import com.jxq.mvp.common.util.ToastUtil;
 import com.jxq.mvp.main.view.MainActivity;
-import com.google.gson.Gson;
-
-import java.lang.ref.SoftReference;
 
 
 /**
@@ -64,7 +49,7 @@ public class LoginDialog extends Dialog implements ILoginView {
         mPhoneStr = phone;
         IHttpClient httpClient = new OkHttpClientImpl();
         SharedPreferencesDao dao =
-                new SharedPreferencesDao(MyTaxiApplication.getInstance(),
+                new SharedPreferencesDao(TaxiApplication.getInstance(),
                         SharedPreferencesDao.FILE_ACCOUNT);
         IAccountManager accountManager = new AccountManagerImpl(httpClient, dao);
         mPresenter = new LoginDialogPresenterImpl(this, accountManager);
@@ -165,7 +150,7 @@ public class LoginDialog extends Dialog implements ILoginView {
         mTips.setTextColor(getContext().getResources().getColor(R.color.color_text_normal));
         mTips.setText(getContext().getString(R.string.login_suc));
         ToastUtil.show(getContext(), getContext().getString(R.string.login_suc));
-       mainActivity.showLoginSuc();
+        mainActivity.showLoginSuc();
         dismiss();//同时，把当前的对话框给关掉
 
     }

@@ -21,8 +21,7 @@ public class SharedPreferencesDao {
      *  初始化
      */
     public SharedPreferencesDao(Application application, String fileName) {
-        sharedPreferences =
-                application.getSharedPreferences(fileName, Context.MODE_PRIVATE);
+        sharedPreferences = application.getSharedPreferences(fileName, Context.MODE_PRIVATE);
     }
     /**
      * 保存 k-v
