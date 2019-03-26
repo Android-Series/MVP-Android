@@ -1,7 +1,5 @@
 package com.jxq.mvp.common.databus;
 
-import android.util.Log;
-import com.jxq.mvp.common.lbs.LocationInfo;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;

@@ -163,11 +163,11 @@ public class MainPresenterImpl implements IMainPresenter {
             view.showArriveEnd(mCurrentOrder);
         } else if (response.getState() ==
                 OrderStateOptResponse.PAY) {
-            //  支付
+            //  支付， public void pay(final String orderId) {return orderStateOptResponse}//返回数据到presenter层去做处理
             if (response.getCode() == BaseBizResponse.STATE_OK) {
                 view.showPaySuc(mCurrentOrder);
             } else {
-                view.showPayFail();
+                view.showPayFail();//支付成功或者失败都会在view层进行一个更新
             }
         }
         LogUtil.d("MainPresenterImpl", "getProcessingOrder" + mCurrentOrder);
@@ -227,8 +227,9 @@ public class MainPresenterImpl implements IMainPresenter {
      */
     @Override
     public void pay() {
+        //判断订单是不是存在的
         if (mCurrentOrder != null) {
-            mainManager.pay(mCurrentOrder.getOrderId());
+            mainManager.pay(mCurrentOrder.getOrderId());//把订单号传递到manager里面去
         }
     }
 

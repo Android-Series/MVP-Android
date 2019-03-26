@@ -47,9 +47,9 @@ public class BaseRequest implements IRequest{
     public String getUrl() {
         if (GET.equals(method)) {
             // 组装 Get 请求参数
-            for (String key : body.keySet()) {
+            for (String key : body.keySet()) { //从body里面把之前设置的键值对迭代出来
 
-                url = url.replace("${" + key + "}", body.get(key).toString());
+                url = url.replace("${" + key + "}", body.get(key).toString());//订了API的约定
 
             }
         }

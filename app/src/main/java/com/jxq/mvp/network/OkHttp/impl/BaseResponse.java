@@ -7,10 +7,11 @@ import com.jxq.mvp.network.OkHttp.IResponse;
  */
 
 public class BaseResponse implements IResponse {
-    public static final int STATE_UNKNOWN_ERROR = 100001;
+
+    public static final int STATE_UNKNOWN_ERROR = 100001;//把对应业务的错误码放到这里来
     public static final int STATE_OK = 200;
 
-    // 状态码
+    // 网络层的状态码
     private int code;
     // 响应数据
     private String data;

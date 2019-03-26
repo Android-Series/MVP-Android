@@ -171,14 +171,14 @@ public class MainMangerImpl implements IMainManager{
 
                 IRequest request = new BaseRequest(API.Config.getDomain() + API.PAY);
 
-                request.setBody("id", orderId);
-                IResponse response = mHttpClient.post(request, false);
+                request.setBody("id", orderId);//接口需要一个id
+                IResponse response = mHttpClient.post(request, false);//支付
                 OrderStateOptResponse orderStateOptResponse = new OrderStateOptResponse();
-                orderStateOptResponse.setCode(response.getCode());
+                orderStateOptResponse.setCode(response.getCode());//解析返回的状态码
                 orderStateOptResponse.setState(OrderStateOptResponse.PAY);
 
                 LogUtil.d(TAG, "pay order: " + response.getData());
-                return orderStateOptResponse;
+                return orderStateOptResponse;  //返回数据到presenter层去做处理
             }
         });
     }
@@ -198,7 +198,7 @@ public class MainMangerImpl implements IMainManager{
                 SharedPreferencesDao sharedPreferencesDao = new SharedPreferencesDao(TaxiApplication.getInstance(),
                                 SharedPreferencesDao.FILE_ACCOUNT);
                 Account account = (Account) sharedPreferencesDao.get(SharedPreferencesDao.KEY_ACCOUNT, Account.class);
-                String uid = account.getUid();
+                String uid = account.getUid(); //通过本地存储的对象获取uid
                 IRequest request = new BaseRequest(API.Config.getDomain() + API.GET_PROCESSING_ORDER);
                 request.setBody("uid", uid);
 
@@ -212,7 +212,7 @@ public class MainMangerImpl implements IMainManager{
                     if (orderStateOptResponse.getCode() == BaseBizResponse.STATE_OK) {
                         orderStateOptResponse.setState(orderStateOptResponse.getData().getState());
                         LogUtil.d(TAG, "getProcessingOrder order state=" + orderStateOptResponse.getState());
-                        return orderStateOptResponse;
+                        return orderStateOptResponse; //返回，回到我们的presenter
                     }
                 }
                 return null;

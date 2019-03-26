@@ -13,17 +13,20 @@ import org.junit.Test;
  * Created by liuguangli on 17/4/29.
  */
 public class OkHttpClientImplTest {
-    IHttpClient httpClient;
+
+    IHttpClient httpClient;//使用接口来定义
+
     @Before
     public void setUp() throws Exception {
         httpClient = new OkHttpClientImpl();
-        API.Config.setDebug(true);
+        API.Config.setDebug(false);//项目初始化的时候，设置我们的域名
     }
 
     @Test
     public void get() throws Exception {
         // 设置 request 参数
         String url = API.Config.getDomain() + API.TEST_GET;
+        System.out.println("url ="+url);
         IRequest request = new BaseRequest(url);
         request.setHeader("testHeader", "test header");
         request.setBody("uid", "123456");

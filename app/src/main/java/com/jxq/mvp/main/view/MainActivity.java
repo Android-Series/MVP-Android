@@ -233,10 +233,10 @@ public class MainActivity extends AppCompatActivity implements IMainView {
     }
 
     private void pay() {
-        mLoadingArea.setVisibility(View.VISIBLE);
+        mLoadingArea.setVisibility(View.VISIBLE);//进度条打开
         mTips.setVisibility(View.GONE);
         mLoadingText.setText(R.string.paying);
-        mPresenter.pay();
+        mPresenter.pay(); //接下来调presenter的方法
     }
 
     /**

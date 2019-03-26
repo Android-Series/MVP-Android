@@ -21,6 +21,7 @@ public class OkHttpClientImpl implements IHttpClient {
 
     OkHttpClient mOkHttpClient = new OkHttpClient.Builder()
             .build();
+
     @Override
     public IResponse get(IRequest request, boolean force) {
         /**
@@ -41,6 +42,7 @@ public class OkHttpClientImpl implements IHttpClient {
         }
         // 获取 url
         String url = request.getUrl();
+        System.out.println("url ="+url);
         builder.url(url).get();
 
         Request oKRequest = builder.build();
@@ -77,7 +79,7 @@ public class OkHttpClientImpl implements IHttpClient {
         try {
             Response response = mOkHttpClient.newCall(request).execute();
             // 设置状态码
-            commonResponse.setCode(response.code());
+            commonResponse.setCode(response.code());//把状态码封装进去
             String body = response.body().string();
             // 设置响应数据
             commonResponse.setData(body);
