@@ -20,7 +20,7 @@ public class RxBus {
     private static volatile RxBus instance;
     // 订阅者集合
     private Set<Object> subscribers;//只要是object类型，都可以作为订阅者，观察者模式核心代码
-    //private Set<DataBusSubscriber> subscribers;
+    //private Set<DataBusSubscriber> subscribers; //这就是我们刚定义的接口，我们用集合的成员变量把它装起来，装起来我们要注册
 
     /**
      *  注册 DataBusSubscriber
@@ -63,11 +63,13 @@ public class RxBus {
      * @param func
      */
     public void chainProcess(Func1 func) {
-        Observable.just("")
+        Observable.just("") //利用它的Map属性
                 .subscribeOn(Schedulers.io()) // 指定处理过程在 IO 线程
-                .map(func)   // 包装处理过程
+
+                .map(func)   // 包装处理过程，把处理过程作为一个参数func传过来，把处理的过程放在IO线程里
                 .observeOn(AndroidSchedulers.mainThread())  // 指定事件消费在 Main 线程
                 .subscribe(new Action1<Object>() {
+                    //call方法执行通知的过程，这是放在UI线程里的
                     @Override
                     public void call(Object data) {
                         if (data == null) {
@@ -83,7 +85,7 @@ public class RxBus {
      * @param data
      */
     public void send(Object data) {
-        //循环观察者
+        //循环观察者：递归传过来的订阅者
         for (Object subscriber : subscribers) {
             // 扫描注解，将数据发送到注册的对象的标记方法
             callMethodByAnnotiation(subscriber, data);//调用观察者的方法
