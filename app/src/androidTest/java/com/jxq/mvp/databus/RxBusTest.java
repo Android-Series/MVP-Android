@@ -84,7 +84,7 @@ class Presenter  {
 }
 
 /**
- *  模拟 MODEL,
+ *  模拟 MODEL 层处理
  */
 class Manager {
     public void getUser () {
@@ -94,7 +94,7 @@ class Manager {
                 Log.d(RxBusTest.TAG, "chainProcess getUser start in thread:" + Thread.currentThread());
                 User user = new User();
                 try {
-                    Thread.sleep(1000);
+                    Thread.sleep(1000);//模拟耗时1秒这个过程
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
