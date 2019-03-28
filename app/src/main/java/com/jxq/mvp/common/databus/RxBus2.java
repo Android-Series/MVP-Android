@@ -1,9 +1,12 @@
 package com.jxq.mvp.common.databus;
 
+import android.util.Log;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
+
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -14,18 +17,18 @@ import rx.schedulers.Schedulers;
  * Created by liuguangli on 17/5/17.
  */
 
-public class RxBus {
+public class RxBus2 {
 
     private static final String TAG = "RxBus";
-    private static volatile RxBus instance;
-    // 订阅者集合
-    private Set<Object> subscribers;//只要是object类型，都可以作为订阅者，观察者模式核心代码
+    private static volatile RxBus2 instance;
+    // 订阅者集合：只要是DataBusSubscriber类型，都可以作为订阅者，观察者模式核心代码
+    private Set<DataBusSubscriber> subscribers; //这就是我们刚定义的接口，我们用集合的成员变量把它装起来，装起来我们要注册
 
     /**
      *  注册 DataBusSubscriber
      * @param subscriber
      */
-    public synchronized void register(Object subscriber) {
+    public synchronized void register(DataBusSubscriber subscriber) {
         subscribers.add(subscriber);
     }
 
@@ -33,7 +36,7 @@ public class RxBus {
      *  注销 DataBusSubscriber
      * @param subscriber
      */
-    public synchronized void unRegister(Object subscriber) {
+    public synchronized void unRegister(DataBusSubscriber subscriber) {
         subscribers.remove(subscriber);
     }
 
@@ -41,15 +44,15 @@ public class RxBus {
     /**
      *  单利模式
      */
-    private RxBus() {
+    private RxBus2() {
         subscribers = new CopyOnWriteArraySet<>();
     }
-    public static synchronized RxBus getInstance() {
+    public static synchronized RxBus2 getInstance() {
 
         if (instance == null) {
-            synchronized (RxBus.class) {
+            synchronized (RxBus2.class) {
                 if (instance == null) {
-                    instance = new RxBus();
+                    instance = new RxBus2();
                 }
 
             }
@@ -63,18 +66,23 @@ public class RxBus {
      */
     public void chainProcess(Func1 func) {
         Observable.just("") //利用它的Map属性
-                .subscribeOn(Schedulers.io()) // 指定处理过程在 IO 线程
+                .subscribeOn(Schedulers.io()) // 指定处理过程在 IO 线程，选择IO线程池做线程的管理
 
-                .map(func)   // 包装处理过程，把处理过程作为一个参数func传过来，把处理的过程放在IO线程里
+                .map(func)   // 把处理过程放到子线程中去做（model层做），包装处理过程，把处理过程作为一个参数func传过来，把处理的过程放在IO线程里
                 .observeOn(AndroidSchedulers.mainThread())  // 指定事件消费在 Main 线程
                 .subscribe(new Action1<Object>() {
-                    //call方法执行通知的过程，这是放在UI线程里的
+                    //处理完成之后，要通知presenter
+                    // call方法执行通知的过程，这是放在UI线程里的
                     @Override
                     public void call(Object data) {
-                        if (data == null) {
-                            return;
+
+                        Log.d(TAG,"chainProcess start");
+                        //递归我们刚刚传过来的订阅者
+                        for(DataBusSubscriber s:subscribers){
+                            //数据发送到注册的 DataBusSubscriber
+                            s.onEvent(data);//把处理之后的数据返回，回调到这个方法里面
                         }
-                        send(data);//通知所有的订阅者
+
                     }
                 });
     }
@@ -86,7 +94,7 @@ public class RxBus {
     public void send(Object data) {
         //循环观察者：递归传过来的订阅者
         for (Object subscriber : subscribers) {
-            // 扫描注解，将数据发送到注册的对象被的标记方法里面去
+            // 扫描注解，将数据发送到注册的对象的标记方法
             callMethodByAnnotiation(subscriber, data);//调用观察者的方法
         }
     }
@@ -99,6 +107,7 @@ public class RxBus {
      * @param target
      * @param data
      */
+
     private void callMethodByAnnotiation(Object target, Object data) {
 
         Method[] methodArray = target.getClass().getDeclaredMethods();//反射

@@ -8,10 +8,12 @@ import java.lang.annotation.Target;
 
 /**
  * 自定义注解，用于标记观察者的方法
- * Created by liuguangli on 17/3/9.
+ *
  */
 @Target(ElementType.METHOD) //代表修饰的是一个方法
 @Retention(RetentionPolicy.RUNTIME) //运行时起作用
 @Documented
 public @interface RegisterBus {
+    //这个接口是我们写的一个注解类
+    //注解使用非常简单
 }
