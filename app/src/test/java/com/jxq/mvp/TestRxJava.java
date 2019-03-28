@@ -1,8 +1,4 @@
 package com.jxq.mvp;
-
-/**
- * RxJava测试
- */
 import org.junit.Before;
 import org.junit.Test;
 import rx.Observable;
@@ -11,14 +7,14 @@ import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
-
+/**
+ * RxJava测试
+ */
 public class TestRxJava {
-
     @Before
     public void setUp() {
         Thread.currentThread().setName("currentThread");
     }
-
     /**
      * 第一个例子：认识一下什么是观察者
      */
@@ -31,13 +27,11 @@ public class TestRxJava {
             public void onCompleted() {
                 System.out.println("onCompleted in tread:" + Thread.currentThread().getName());
             }
-
             @Override
             public void onError(Throwable e) {
                 System.out.println("onError in tread:" + Thread.currentThread().getName());
                 e.printStackTrace();
             }
-
             @Override
             public void onNext(String s) {
                 System.out.println("onNext in tread:" + Thread.currentThread().getName());
@@ -65,7 +59,6 @@ public class TestRxJava {
          */
         observable.subscribe(subscriber);
     }
-
     /**
      * 产生事件的call方法的调用和观察者的回调产生在不同的线程，如何做？
      * 在实际的应用中，观察者通常是发生在UI线程里面
@@ -74,7 +67,6 @@ public class TestRxJava {
      */
     @Test
     public void testScheduler() {
-
         //观察者
         final Subscriber<String> subscriber = new Subscriber<String>() {
             @Override
@@ -114,7 +106,6 @@ public class TestRxJava {
     // map
     @Test
     public void testMap() {
-
         String name = "dalimao";
         //最初的输入是一个字符串：name,表示通过名字查询出一个对象的过程，也就是我们的call方法传入的是一个字符串
         Observable.just(name)

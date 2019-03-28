@@ -28,7 +28,6 @@ public class RxBus {
     public synchronized void register(Object subscriber) {
         subscribers.add(subscriber);
     }
-
     /**
      *  注销 DataBusSubscriber
      * @param subscriber
@@ -36,8 +35,6 @@ public class RxBus {
     public synchronized void unRegister(Object subscriber) {
         subscribers.remove(subscriber);
     }
-
-
     /**
      *  单利模式
      */
@@ -45,18 +42,15 @@ public class RxBus {
         subscribers = new CopyOnWriteArraySet<>();
     }
     public static synchronized RxBus getInstance() {
-
         if (instance == null) {
             synchronized (RxBus.class) {
                 if (instance == null) {
                     instance = new RxBus();
                 }
-
             }
         }
         return instance;
     }
-
     /**
      * 包装处理过程
      * @param func
@@ -78,7 +72,6 @@ public class RxBus {
                     }
                 });
     }
-
     /**
      * 发送数据
      * @param data
@@ -90,8 +83,6 @@ public class RxBus {
             callMethodByAnnotiation(subscriber, data);//调用观察者的方法
         }
     }
-
-
     /**
      * 反射获取对象方法列表，判断：
      * 1 是否被注解修饰
