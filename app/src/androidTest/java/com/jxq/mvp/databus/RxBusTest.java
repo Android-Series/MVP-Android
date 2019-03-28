@@ -13,6 +13,7 @@ import rx.functions.Func1;
 
 /**
  * Rxjava 通过注解的方式
+ * 注解的本质：反射
  */
 public class RxBusTest {
     public static final String TAG = "RxBusTest";

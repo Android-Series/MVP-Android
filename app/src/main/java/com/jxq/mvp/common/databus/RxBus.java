@@ -11,7 +11,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by liuguangli on 17/5/17.
+ * 观察者模式
  */
 
 public class RxBus {
