@@ -3,10 +3,7 @@ package com.jxq.mvp.common.util;
 import java.util.UUID;
 
 /**
- * Created by wukeshi on 2018/12/20.
- * Gmail:bigmercu@gmail.com
- * Time:8:59 PM
- * Project:user
+ * Created by jxq
  */
 public class UUID22 {
 
