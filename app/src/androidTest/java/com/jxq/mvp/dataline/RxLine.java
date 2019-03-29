@@ -1,6 +1,9 @@
-package com.jxq.mvp.common.databus;
+package com.jxq.mvp.dataline;
 
 import android.util.Log;
+
+import com.jxq.mvp.common.databus.DataBusSubscriber;
+import com.jxq.mvp.common.databus.RegisterBus;
 
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -17,10 +20,10 @@ import rx.schedulers.Schedulers;
  * Created by liuguangli on 17/5/17.
  */
 
-public class RxBus2 {
+public class RxLine {
 
-    private static final String TAG = "RxBus";
-    private static volatile RxBus2 instance;
+    private static final String TAG = "RxLine";
+    private static volatile RxLine instance;
     // 订阅者集合：只要是DataBusSubscriber类型，都可以作为订阅者，观察者模式核心代码
     private Set<DataBusSubscriber> subscribers; //这就是我们刚定义的接口，我们用集合的成员变量把它装起来，装起来我们要注册
 
@@ -44,15 +47,15 @@ public class RxBus2 {
     /**
      *  单利模式
      */
-    private RxBus2() {
+    private RxLine() {
         subscribers = new CopyOnWriteArraySet<>();
     }
-    public static synchronized RxBus2 getInstance() {
+    public static synchronized RxLine getInstance() {
 
         if (instance == null) {
-            synchronized (RxBus2.class) {
+            synchronized (RxLine.class) {
                 if (instance == null) {
-                    instance = new RxBus2();
+                    instance = new RxLine();
                 }
 
             }
@@ -85,48 +88,5 @@ public class RxBus2 {
 
                     }
                 });
-    }
-
-    /**
-     * 发送数据
-     * @param data
-     */
-    public void send(Object data) {
-        //循环观察者：递归传过来的订阅者
-        for (Object subscriber : subscribers) {
-            // 扫描注解，将数据发送到注册的对象的标记方法
-            callMethodByAnnotiation(subscriber, data);//调用观察者的方法
-        }
-    }
-
-
-    /**
-     * 反射获取对象方法列表，判断：
-     * 1 是否被注解修饰
-     * 2 参数类型是否和 data 类型一致
-     * @param target
-     * @param data
-     */
-
-    private void callMethodByAnnotiation(Object target, Object data) {
-
-        Method[] methodArray = target.getClass().getDeclaredMethods();//反射
-
-        for (int i = 0; i < methodArray.length; i++) {
-            try {
-                if (methodArray[i].isAnnotationPresent(RegisterBus.class)) {
-                    // 被 @RegisterBus 修饰的方法
-                    Class paramType = methodArray[i].getParameterTypes()[0]; //拿到参数类型
-                    if (data.getClass().getName().equals(paramType.getName())) {
-                        // 参数类型和 data 一样，调用此方法
-                        methodArray[i].invoke(target, new Object[]{data});//通过反射调用
-                    }
-                }
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
-                e.printStackTrace();
-            }
-        }
     }
 }

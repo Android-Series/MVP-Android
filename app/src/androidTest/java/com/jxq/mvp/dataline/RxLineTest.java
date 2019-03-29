@@ -11,7 +11,7 @@ public class RxLineTest {
     public void setUp(){
         //初始化 presenter 并注册
         presenter = new Presenter(new Manager());//将model层对象包装到presenter层对象当中
-        RxBus.getInstance().register(presenter);//把presenter作为一个订阅者，注册进去
+        RxLine.getInstance().register(presenter);//把presenter作为一个订阅者，注册进去
     }
     @After
     public void tearDown() {
@@ -20,7 +20,7 @@ public class RxLineTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        RxBus.getInstance().unRegister(presenter);
+        RxLine.getInstance().unRegister(presenter);
     }
     @Test
     public void testGetUser(){
