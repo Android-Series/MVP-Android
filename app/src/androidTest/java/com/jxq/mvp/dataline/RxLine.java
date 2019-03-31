@@ -17,9 +17,9 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
- * Created by liuguangli on 17/5/17.
+ * 被观察者：类似微信公众号
+ * 关键代码：在抽象类里有一个 ArrayList 存放观察者们。
  */
-
 public class RxLine {
 
     private static final String TAG = "RxLine";
@@ -43,7 +43,6 @@ public class RxLine {
         subscribers.remove(subscriber);
     }
 
-
     /**
      *  单利模式
      */
@@ -57,7 +56,6 @@ public class RxLine {
                 if (instance == null) {
                     instance = new RxLine();
                 }
-
             }
         }
         return instance;
@@ -74,18 +72,18 @@ public class RxLine {
                 .map(func)   // 把处理过程放到子线程中去做（model层做），包装处理过程，把处理过程作为一个参数func传过来，把处理的过程放在IO线程里
                 .observeOn(AndroidSchedulers.mainThread())  // 指定事件消费在 Main 线程
                 .subscribe(new Action1<Object>() {
-                    //处理完成之后，要通知presenter
+                    // 处理完成之后，要通知presenter
                     // call方法执行通知的过程，这是放在UI线程里的
                     @Override
                     public void call(Object data) {
 
                         Log.d(TAG,"chainProcess start");
-                        //递归我们刚刚传过来的订阅者
+                        //递归传过来的观察者
                         for(DataBusSubscriber s:subscribers){
-                            //数据发送到注册的 DataBusSubscriber
-                            s.onEvent(data);//把处理之后的数据返回，回调到这个方法里面
-                        }
 
+                            s.onEvent(data); //核心代码：回调到presenter层,将data数据带回
+
+                        }
                     }
                 });
     }

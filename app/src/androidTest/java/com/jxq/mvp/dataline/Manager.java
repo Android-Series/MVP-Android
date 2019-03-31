@@ -19,7 +19,7 @@ public class Manager {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                return user; // 把 User 数据到 Presenter
+                return user; // 把 User 数据返回到 Presenter
             }
         });
     }
@@ -28,8 +28,13 @@ public class Manager {
         RxLine.getInstance().chainProcess(new Func1() {
             @Override
             public Object call(Object o) {
-                Log.d(RxBusTest.TAG, "chainProcess getOrder start in thread::" + Thread.currentThread());
+                Log.d(RxLineTest.TAG, "chainProcess getOrder start in thread::" + Thread.currentThread());
                 Order order = new Order(); //模拟的处理对象
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
                 return order;// 把 order 数据到 Presenter
             }
         });

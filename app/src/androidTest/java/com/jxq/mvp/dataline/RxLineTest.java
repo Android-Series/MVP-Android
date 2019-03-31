@@ -1,15 +1,17 @@
 package com.jxq.mvp.dataline;
-import com.jxq.mvp.common.databus.RxBus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
+/**
+ * 测试RX Java的使用：通过接口实现
+ */
 public class RxLineTest {
     public static final String TAG = "RxLineTest";
     Presenter presenter;
     @Before
     public void setUp(){
-        //初始化 presenter 并注册
+        //初始化 presenter 并注册，presenter就是我们的观察者
         presenter = new Presenter(new Manager());//将model层对象包装到presenter层对象当中
         RxLine.getInstance().register(presenter);//把presenter作为一个订阅者，注册进去
     }
@@ -20,7 +22,7 @@ public class RxLineTest {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-        RxLine.getInstance().unRegister(presenter);
+        RxLine.getInstance().unRegister(presenter); //从Set集合中移除观察者
     }
     @Test
     public void testGetUser(){

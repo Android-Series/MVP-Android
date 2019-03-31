@@ -1,15 +1,8 @@
 package com.jxq.mvp;
 
-/**
- * Created by liuguangli on 17/3/5.
- */
-
-
 import android.support.test.runner.AndroidJUnit4;
-
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import rx.Observable;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Action1;
@@ -45,6 +38,7 @@ public class TestRxJavaInAndroid {
                     }
                 });
     }
+
    public static class User {
         String name;
 
@@ -56,5 +50,4 @@ public class TestRxJavaInAndroid {
            this.name = name;
        }
    }
-
 }
