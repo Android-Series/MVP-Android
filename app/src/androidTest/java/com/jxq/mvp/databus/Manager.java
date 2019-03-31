@@ -1,7 +1,6 @@
 package com.jxq.mvp.databus;
 
 import android.util.Log;
-import com.jxq.mvp.common.databus.RxBus;
 import rx.functions.Func1;
 
 /**
@@ -19,8 +18,7 @@ class Manager {
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                // 把 User 数据到 Presenter
-                return user;
+                return user; //把 User数据返回到Presenter
             }
         });
     }

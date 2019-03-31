@@ -1,6 +1,5 @@
 package com.jxq.mvp.databus;
 
-import com.jxq.mvp.common.databus.RxBus;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
