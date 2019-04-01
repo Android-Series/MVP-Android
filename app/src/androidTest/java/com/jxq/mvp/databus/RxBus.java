@@ -1,5 +1,9 @@
 package com.jxq.mvp.databus;
 
+import android.util.Log;
+
+import com.jxq.mvp.dataline.RxLineTest;
+
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
@@ -61,7 +65,7 @@ public class RxBus {
                 .subscribeOn(Schedulers.io()) // 指定处理过程在 IO 线程
 
                 .map(func)   // 包装处理过程，把处理过程作为一个参数func传过来，把处理的过程放在IO线程里
-                .observeOn(AndroidSchedulers.mainThread())  // 指定事件消费在 Main 线程
+                .observeOn(AndroidSchedulers.mainThread())  // 指定事件消费在 Main 线程，线程变换
                 .subscribe(new Action1<Object>() {
                     //call方法执行通知的过程，这是放在UI线程里的
                     @Override
@@ -69,7 +73,7 @@ public class RxBus {
                         if (data == null) {
                             return;
                         }
-                        send(data);//通知所有的订阅者
+                        send(data);//通知所有观察者
                     }
                 });
     }
@@ -93,16 +97,18 @@ public class RxBus {
      */
     private void callMethodByAnnotiation(Object target, Object data) {
 
-        Method[] methodArray = target.getClass().getDeclaredMethods();//反射
+        Method[] methodArray = target.getClass().getDeclaredMethods();//方法反射:拿到Presenter类所有声明的方法
 
         for (int i = 0; i < methodArray.length; i++) {
             try {
                 if (methodArray[i].isAnnotationPresent(RegisterBus.class)) {
-                    // 被 @RegisterBus 修饰的方法
+                    // 找到被 @RegisterBus 修饰的方法
                     Class paramType = methodArray[i].getParameterTypes()[0]; //拿到参数类型
+                    Log.d(RxBusTest.TAG,paramType.getName());
+                    //通过data.getClass().getName()，选择被RegisterBus注解的具体的某个方法
                     if (data.getClass().getName().equals(paramType.getName())) {
                         // 参数类型和 data 一样，调用此方法
-                        methodArray[i].invoke(target, new Object[]{data});//通过反射调用
+                        methodArray[i].invoke(target, new Object[]{data});//核心方法：通过反射调用Presenter类中被RegisterBus注解的方法
                     }
                 }
             } catch (IllegalAccessException e) {
