@@ -15,7 +15,7 @@ public class RxBusTest {
 
     @Before
     public void setUp(){
-        presenter = new Presenter(new Manager());//初始化 presenter 并注册
+        presenter = new Presenter(new Manager()); //初始化 presenter 并注册
         RxBus.getInstance().register(presenter);
     }
 
