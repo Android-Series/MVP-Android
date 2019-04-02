@@ -17,7 +17,7 @@ import okhttp3.Request;
 import okhttp3.RequestBody;
 import okhttp3.Response;
 
-public class TestOkHttp3 {
+public class OkHttp3Test {
     /**
      * 测试 OkHttp Get 方法
      */

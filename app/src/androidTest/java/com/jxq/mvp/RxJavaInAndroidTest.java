@@ -15,13 +15,16 @@ import rx.schedulers.Schedulers;
  * 需要用到设备：需要用到android API的支持
  */
 @RunWith(AndroidJUnit4.class)
-public class TestRxJavaInAndroid {
+public class RxJavaInAndroidTest {
 
+    /**
+     * 跨线程的的数据流
+     */
     @Test
     public void testMap_InAndroid() {
         Observable.just("dalimao")
                 .subscribeOn(Schedulers.io()) // 指定下一个产生的线程节点在 IO 线程中处理
-
+                //处理节点只指定了一个
                 .map(new Func1<String, User>() { //这里只指定一个处理节点：一个map
                     @Override
                     public User call(String name) {

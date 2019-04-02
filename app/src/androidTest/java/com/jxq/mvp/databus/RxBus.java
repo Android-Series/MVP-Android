@@ -1,9 +1,6 @@
 package com.jxq.mvp.databus;
 
 import android.util.Log;
-
-import com.jxq.mvp.dataline.RxLineTest;
-
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Set;
@@ -16,6 +13,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
+ * 跨线程的数据流 — RxBus
  * 观察者模式
  */
 

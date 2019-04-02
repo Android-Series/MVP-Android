@@ -1,4 +1,4 @@
-package com.jxq.mvp.common.databus;
+package com.jxq.mvp.dataline;
 
 /**
  * 数据订阅者，Presenter 要实现这个接口，去实现onEvent()方法

@@ -2,11 +2,6 @@ package com.jxq.mvp.dataline;
 
 import android.util.Log;
 
-import com.jxq.mvp.common.databus.DataBusSubscriber;
-import com.jxq.mvp.common.databus.RegisterBus;
-
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Set;
 import java.util.concurrent.CopyOnWriteArraySet;
 
@@ -17,6 +12,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
+ * 跨线程的数据流 — RxLine
  * 被观察者：类似微信公众号
  * 关键代码：在抽象类里有一个 ArrayList 存放观察者们。
  */

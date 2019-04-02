@@ -11,6 +11,7 @@ import rx.functions.Func1;
 import rx.schedulers.Schedulers;
 
 /**
+ * RxBus 重构代码，让MVP更优雅
  * 观察者模式
  */
 

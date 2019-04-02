@@ -2,9 +2,6 @@ package com.jxq.mvp.dataline;
 
 import android.util.Log;
 
-import com.jxq.mvp.common.databus.DataBusSubscriber;
-import com.jxq.mvp.databus.RxBusTest;
-
 /**
  *  观察者：
  *  模拟 Presenter，实现 DataBusSubscriber 接口，接收数据
