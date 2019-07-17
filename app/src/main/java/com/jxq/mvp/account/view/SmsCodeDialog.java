@@ -10,7 +10,6 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
-import com.dalimao.corelibrary.VerificationCodeInput;
 import com.jxq.mvp.TaxiApplication;
 import com.jxq.mvp.R;
 import com.jxq.mvp.account.model.AccountManagerImpl;
@@ -23,6 +22,7 @@ import com.jxq.mvp.network.OkHttp.impl.OkHttpClientImpl;
 import com.jxq.mvp.common.storage.SharedPreferencesDao;
 import com.jxq.mvp.common.util.ToastUtil;
 import com.jxq.mvp.main.view.MainActivity;
+import com.jxq.mvp.view.VerificationCodeInput;
 
 
 /**

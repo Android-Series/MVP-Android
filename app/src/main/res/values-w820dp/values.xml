@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="vericationCodeInput"><attr format="integer" name="box"/><attr format="dimension" name="child_h_padding"/><attr format="dimension" name="child_v_padding"/><attr format="dimension" name="child_width"/><attr format="dimension" name="child_height"/><attr format="dimension" name="padding"/><attr format="reference" name="box_bg_focus"/><attr format="reference" name="box_bg_normal"/><attr format="string" name="inputType"/></declare-styleable>
+    <string name="app_name">CoreLibrary</string>
+</resources>
